@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TheCodeCoolTimesBackendApplication {
+public class TheCodeCoolTimesBackendApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(TheCodeCoolTimesBackendApplication.class, args);
+        SpringApplication.run(TheCodeCoolTimesBackendApp.class, args);
     }
 
 }
