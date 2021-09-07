@@ -28,8 +28,6 @@ public class NewsController {
 
     @GetMapping("/top-news")
     public NewsResults getTopNews(HttpServletResponse response) {
-        response.addHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-        // TODO create WebFilter for all routes if needed
         return newsService.getTopNews();
     }
 
