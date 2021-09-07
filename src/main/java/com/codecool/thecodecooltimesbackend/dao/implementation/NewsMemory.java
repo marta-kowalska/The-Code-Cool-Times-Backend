@@ -1,7 +1,7 @@
 package com.codecool.thecodecooltimesbackend.dao.implementation;
 
 import com.codecool.thecodecooltimesbackend.dao.NewsDAO;
-import com.codecool.thecodecooltimesbackend.model.News;
+import com.codecool.thecodecooltimesbackend.model.news.News;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

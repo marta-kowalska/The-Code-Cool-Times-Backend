@@ -1,8 +1,8 @@
 package com.codecool.thecodecooltimesbackend.service;
 
 import com.codecool.thecodecooltimesbackend.dao.NewsDAO;
-import com.codecool.thecodecooltimesbackend.model.News;
-import com.codecool.thecodecooltimesbackend.model.NewsResults;
+import com.codecool.thecodecooltimesbackend.model.news.News;
+import com.codecool.thecodecooltimesbackend.model.news.NewsResults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;

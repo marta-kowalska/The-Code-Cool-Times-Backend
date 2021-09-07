@@ -1,4 +1,4 @@
-package com.codecool.thecodecooltimesbackend.model;
+package com.codecool.thecodecooltimesbackend.model.news;
 
 
 import java.util.ArrayList;
