@@ -1,6 +1,7 @@
 package com.codecool.thecodecooltimesbackend.controller;
 
 import com.codecool.thecodecooltimesbackend.model.News;
+import com.codecool.thecodecooltimesbackend.model.NewsResults;
 import com.codecool.thecodecooltimesbackend.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,15 @@ public class NewsController {
         this.newsService = newsService;
     }
 
+    @GetMapping("/")
+    public String getMainPage() {
+        return "Hello Code Cool Times!";
+    }
+
     @GetMapping("/top-news")
-    public List<News> getTopNews() {
-        return newsService.getTopNews();
+    public String getTopNews() {
+//        return newsService.getTopNews().toString();
+        return "ok";
     }
 
     @GetMapping("/today/{category}")
