@@ -26,9 +26,8 @@ public class NewsController {
     }
 
     @GetMapping("/top-news")
-    public String getTopNews() {
-//        return newsService.getTopNews().toString();
-        return "ok";
+    public NewsResults getTopNews() {
+        return newsService.getTopNews();
     }
 
     @GetMapping("/today/{category}")
