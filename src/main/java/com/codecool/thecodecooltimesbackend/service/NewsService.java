@@ -25,8 +25,11 @@ public class NewsService {
         return newsDAO.getTopNews();
     }
 
-    public NewsResults getNewsForCategory(String category){
-        return null;
+    public NewsResults getTopNewsForCategory(String category) {
+        return newsDAO.getTopNewsForCategory(category);
     }
 
+    public NewsResults getNewsOnKeyword(String keyword) {
+        return newsDAO.getNewsOnKeyword(keyword);
+    }
 }

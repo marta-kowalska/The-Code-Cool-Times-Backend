@@ -29,8 +29,14 @@ public class NewsController {
         return newsService.getTopNews();
     }
 
-    @GetMapping("/today/{category}")
-    public NewsResults getNewsForCategory(@PathVariable("category") String category) {
-        return newsService.getNewsForCategory(category);
+    @GetMapping("/category={category}")
+    public NewsResults getTopNewsForCategory(@PathVariable("category") String category) {
+        return newsService.getTopNewsForCategory(category);
     }
+
+    @GetMapping("/keyword={keyword}")
+    public NewsResults getNewsOnKeyword(@PathVariable("keyword") String keyword) {
+        return newsService.getNewsOnKeyword(keyword);
+    }
+
 }
