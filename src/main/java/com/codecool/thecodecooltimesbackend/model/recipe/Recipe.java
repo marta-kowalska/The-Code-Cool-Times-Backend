@@ -24,9 +24,19 @@ public class Recipe {
     private String strMeasure8;
     private String strMeasure9;
     private String strMeasure10;
+    private String strSource;
 
     public Recipe() {
     }
+
+    public String getStrSource() {
+        return strSource;
+    }
+
+    public void setStrSource(String strSource) {
+        this.strSource = strSource;
+    }
+
 
     public String getStrMeal() {
         return strMeal;
