@@ -32,7 +32,7 @@ public class NewsController {
     }
 
     @GetMapping("/today/{category}")
-    public List<News> getNewsForCategory(@PathVariable("category") String category) {
+    public NewsResults getNewsForCategory(@PathVariable("category") String category) {
         return newsService.getNewsForCategory(category);
     }
 }
