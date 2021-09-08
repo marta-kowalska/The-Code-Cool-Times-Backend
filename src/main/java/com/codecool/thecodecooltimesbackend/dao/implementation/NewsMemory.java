@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -16,29 +17,26 @@ public class NewsMemory implements NewsDAO {
 
     private static final String BASE_URL = "https://newsapi.org/v2/";
     private static final String API_KEY = "&apiKey=803b1f20229542109d3b21b58d162064";
-    private NewsResults topNewsResults;
-    private LocalDateTime topNewsResultsLastUpdated;
-
+    private Map<String, NewsResults> newsContainer = new HashMap<>();
 
     @Override
     public NewsResults getTopNews() {
-        String URL = BASE_URL +  "top-headlines?country=us&pageSize=100" + API_KEY;
-        LocalDateTime yesterdayDate =  LocalDateTime.now(ZoneId.of("UTC")).minusDays(1);
-        LocalDateTime todayDate =  LocalDateTime.now(ZoneId.of("UTC"));
-        System.out.println(topNewsResults);
-        System.out.println(topNewsResultsLastUpdated);
-        if (topNewsResultsLastUpdated!=null && (yesterdayDate.isAfter(topNewsResultsLastUpdated)) ||topNewsResults == null ) {
-            topNewsResultsLastUpdated = todayDate;
-            topNewsResults = ApiRequester.fetchData(URL, NewsResults.class);
+        String url = BASE_URL +  "top-headlines?country=us&pageSize=100" + API_KEY;
+        LocalDateTime yesterdayDate = LocalDateTime.now(ZoneId.of("UTC")).minusDays(1);
+        LocalDateTime todayDate = LocalDateTime.now(ZoneId.of("UTC"));
+        if (!newsContainer.containsKey("topNews") || yesterdayDate.isAfter(newsContainer.get("topNews").getLastUpdated())) {
+            NewsResults topNews = ApiRequester.fetchData(url, NewsResults.class);
+            topNews.setLastUpdated(todayDate);
+            newsContainer.put("topNews", topNews);
         }
-        System.out.println(topNewsResults);
-        return topNewsResults;
+        return newsContainer.get("topNews");
     }
 
     @Override
     public NewsResults getTopNewsForCategory(String category) {
         LocalDateTime todayDate =  LocalDateTime.now(ZoneId.of("UTC")).withNano(0);
-        LocalDateTime tomorrowDate =  LocalDateTime.from(todayDate.atZone(ZoneId.of("UTC"))).plusDays(1).withNano(0);
+        LocalDateTime yesterdayDate = LocalDateTime.now(ZoneId.of("UTC")).minusDays(1);
+
         String url = BASE_URL + "top-headlines?category=" +
                 category +
                 "&language=en" +
@@ -46,14 +44,18 @@ public class NewsMemory implements NewsDAO {
                 "&to" + todayDate +
                 "&pageSize=100" +
                 API_KEY;
-        NewsResults newsResults = ApiRequester.fetchData(url, NewsResults.class);
-        return newsResults;
+        if (!newsContainer.containsKey(category) || yesterdayDate.isAfter(newsContainer.get(category).getLastUpdated())) {
+            NewsResults topNewsForCategory = ApiRequester.fetchData(url, NewsResults.class);
+            topNewsForCategory.setLastUpdated(todayDate);
+            newsContainer.put(category, topNewsForCategory);
+        }
+        return newsContainer.get(category);
     }
 
     @Override
     public NewsResults getNewsOnKeyword(String keyword) {
         LocalDateTime todayDate =  LocalDateTime.now(ZoneId.of("UTC")).withNano(0);
-        LocalDateTime tomorrowDate =  LocalDateTime.from(todayDate.atZone(ZoneId.of("UTC"))).plusDays(1).withNano(0);
+        LocalDateTime yesterdayDate = LocalDateTime.now(ZoneId.of("UTC")).minusDays(1);
         String url = BASE_URL + "everything?q=" +
                 keyword +
                 "&language=en" +
@@ -61,7 +63,11 @@ public class NewsMemory implements NewsDAO {
                 "&to" + todayDate +
                 "&pageSize=100" +
                 API_KEY;
-        NewsResults newsResults = ApiRequester.fetchData(url, NewsResults.class);
-        return newsResults;
+        if (!newsContainer.containsKey(keyword) || yesterdayDate.isAfter(newsContainer.get(keyword).getLastUpdated())) {
+            NewsResults topNewsForKeyword = ApiRequester.fetchData(url, NewsResults.class);
+            topNewsForKeyword.setLastUpdated(todayDate);
+            newsContainer.put(keyword, topNewsForKeyword);
+        }
+        return newsContainer.get(keyword);
     }
 }
