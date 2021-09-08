@@ -1,9 +1,9 @@
 package com.codecool.thecodecooltimesbackend.dao;
 
-import com.codecool.thecodecooltimesbackend.model.news.News;
 
-import java.util.List;
+import com.codecool.thecodecooltimesbackend.model.news.NewsResults;
+
 
 public interface NewsDAO {
-    List<News> getTopNews();
+    NewsResults getTopNews();
 }

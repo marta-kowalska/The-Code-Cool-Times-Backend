@@ -16,25 +16,17 @@ import java.util.List;
 public class NewsService {
     private final NewsDAO newsDAO;
 
-    WebClient webClient = WebClient.create();
-
     @Autowired
     public NewsService(@Qualifier("newsMemory") NewsDAO newsDAO) {
         this.newsDAO = newsDAO;
     }
 
     public NewsResults getTopNews(){
-        Mono<NewsResults> response = webClient.get()
-                .uri("https://newsapi.org/v2/everything?qInTitle=everything&pageSize=100&apiKey=803b1f20229542109d3b21b58d162064")
-                .accept(MediaType.APPLICATION_JSON)
-                .retrieve()
-                .bodyToMono(NewsResults.class);
-        return response.block();
+        return newsDAO.getTopNews();
     }
 
-    public List<News> getNewsForCategory(String category){
+    public NewsResults getNewsForCategory(String category){
         return null;
     }
-
 
 }
