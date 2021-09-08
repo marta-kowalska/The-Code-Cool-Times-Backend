@@ -11,9 +11,16 @@ public class Recipe {
     public Recipe() {
     }
 
-    public List<String> ingredients = new ArrayList<>();
-    public List<String> measures = new ArrayList<>();
+    private List<String> ingredients = new ArrayList<>();
+    private List<String> measures = new ArrayList<>();
 
+    public List<String> getIngredients() {
+        return ingredients;
+    }
+
+    public List<String> getMeasures() {
+        return measures;
+    }
 
     public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
@@ -33,16 +40,17 @@ public class Recipe {
 
     private void addIngredient(String ingredient){
         if(!ingredient.equals("") && !ingredient.equals(" ") ){
+            ingredient = ingredient.substring(0,1).toUpperCase() + ingredient.substring(1).toLowerCase();
             ingredients.add(ingredient);
         }
     }
 
     private void addMeasure(String measure){
         if(!measure.equals("") && !measure.equals(" ") ){
+            measure = measure.substring(0,1).toUpperCase() + measure.substring(1).toLowerCase();
             measures.add(measure);
         }
     }
-
 
     public String getStrMeal() {
         return strMeal;
@@ -67,7 +75,6 @@ public class Recipe {
     public void setStrMealThumb(String strMealThumb) {
         this.strMealThumb = strMealThumb;
     }
-
 
     public void setStrIngredient1(String strIngredient1) {
         addIngredient(strIngredient1);
@@ -101,16 +108,13 @@ public class Recipe {
         addIngredient(strIngredient8);
     }
 
-
     public void setStrIngredient9(String strIngredient9) {
         addIngredient(strIngredient9);
     }
 
-
     public void setStrIngredient10(String strIngredient10) {
         addIngredient(strIngredient10);
     }
-
 
     public void setStrMeasure1(String strMeasure1) {
         addMeasure(strMeasure1);
@@ -123,7 +127,6 @@ public class Recipe {
    public void setStrMeasure3(String strMeasure3) {
        addMeasure(strMeasure3);
     }
-
 
     public void setStrMeasure4(String strMeasure4) {
         addMeasure(strMeasure4);
