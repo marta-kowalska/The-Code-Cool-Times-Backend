@@ -1,13 +1,11 @@
 package com.codecool.thecodecooltimesbackend.controller;
 
-import com.codecool.thecodecooltimesbackend.model.News;
-import com.codecool.thecodecooltimesbackend.model.NewsResults;
+import com.codecool.thecodecooltimesbackend.model.news.NewsResults;
 import com.codecool.thecodecooltimesbackend.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @RestController
 @RequestMapping("/news/v1")
