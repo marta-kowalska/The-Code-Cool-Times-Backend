@@ -19,7 +19,7 @@ public class RecipeController {
     }
 
     @GetMapping("/random")
-    public Recipe getrandomRecipe() {
+    public Recipe getRandomRecipe() {
         return RecipeService.getRecipe();
     }
 }
