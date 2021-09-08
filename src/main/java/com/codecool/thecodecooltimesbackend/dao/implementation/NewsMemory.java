@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Map;
 
 
 @Repository("newsMemory")
@@ -15,13 +16,23 @@ public class NewsMemory implements NewsDAO {
 
     private static final String BASE_URL = "https://newsapi.org/v2/";
     private static final String API_KEY = "&apiKey=803b1f20229542109d3b21b58d162064";
+    private NewsResults topNewsResults;
+    private LocalDateTime topNewsResultsLastUpdated;
+
 
     @Override
     public NewsResults getTopNews() {
         String URL = BASE_URL +  "top-headlines?country=us&pageSize=100" + API_KEY;
-        NewsResults newsResults = ApiRequester.fetchData(URL, NewsResults.class);
-        return newsResults;
-
+        LocalDateTime yesterdayDate =  LocalDateTime.now(ZoneId.of("UTC")).minusDays(1);
+        LocalDateTime todayDate =  LocalDateTime.now(ZoneId.of("UTC"));
+        System.out.println(topNewsResults);
+        System.out.println(topNewsResultsLastUpdated);
+        if (topNewsResultsLastUpdated!=null && (yesterdayDate.isAfter(topNewsResultsLastUpdated)) ||topNewsResults == null ) {
+            topNewsResultsLastUpdated = todayDate;
+            topNewsResults = ApiRequester.fetchData(URL, NewsResults.class);
+        }
+        System.out.println(topNewsResults);
+        return topNewsResults;
     }
 
     @Override

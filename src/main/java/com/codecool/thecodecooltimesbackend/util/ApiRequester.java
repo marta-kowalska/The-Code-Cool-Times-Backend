@@ -14,7 +14,6 @@ public class ApiRequester {
             .accept(MediaType.APPLICATION_JSON)
             .retrieve()
             .bodyToMono(className);
-        System.out.println(response.block());
         return response.block();
     }
 
