@@ -28,7 +28,7 @@ public class RecipeMemory implements RecipeDAO {
     }
 
     private RecipeResults fetchRecipe(){
-        return ApiRequester.fetchData(API_URL, RecipeResults.class);
+        return ApiRequester.fetchDataGet(API_URL, RecipeResults.class);
     }
 
     private boolean shouldFetchAgain(){
