@@ -11,9 +11,15 @@ import org.springframework.stereotype.Repository;
 public class RecipeMemory implements RecipeDAO {
 
     private static final String API_URL = "https://www.themealdb.com/api/json/v1/1/random.php";
+
+    private RecipeResults recipeResults;
+
     @Override
     public Recipe getRandomRecipe() {
-        return fetchRecipe().getFirstRecipe();
+        if(recipeResults == null){
+            recipeResults = fetchRecipe();
+        }
+        return recipeResults.getFirstRecipe();
     }
 
     private RecipeResults fetchRecipe(){
