@@ -1,7 +1,6 @@
 package com.codecool.thecodecooltimesbackend.dao.implementation;
 
 import com.codecool.thecodecooltimesbackend.dao.NewsDAO;
-import com.codecool.thecodecooltimesbackend.model.News;
 import com.codecool.thecodecooltimesbackend.model.NewsResults;
 import com.codecool.thecodecooltimesbackend.util.ApiRequester;
 import org.springframework.stereotype.Repository;
@@ -25,7 +24,7 @@ public class NewsMemory implements NewsDAO {
         LocalDateTime yesterdayDate = LocalDateTime.now(ZoneId.of("UTC")).minusDays(1);
         LocalDateTime todayDate = LocalDateTime.now(ZoneId.of("UTC"));
         if (!newsContainer.containsKey("topNews") || yesterdayDate.isAfter(newsContainer.get("topNews").getLastUpdated())) {
-            NewsResults topNews = ApiRequester.fetchData(url, NewsResults.class);
+            NewsResults topNews = ApiRequester.fetchDataGet(url, NewsResults.class);
             topNews.setLastUpdated(todayDate);
             newsContainer.put("topNews", topNews);
         }
@@ -45,7 +44,7 @@ public class NewsMemory implements NewsDAO {
                 "&pageSize=100" +
                 API_KEY;
         if (!newsContainer.containsKey(category) || yesterdayDate.isAfter(newsContainer.get(category).getLastUpdated())) {
-            NewsResults topNewsForCategory = ApiRequester.fetchData(url, NewsResults.class);
+            NewsResults topNewsForCategory = ApiRequester.fetchDataGet(url, NewsResults.class);
             topNewsForCategory.setLastUpdated(todayDate);
             newsContainer.put(category, topNewsForCategory);
         }
@@ -64,7 +63,7 @@ public class NewsMemory implements NewsDAO {
                 "&pageSize=100" +
                 API_KEY;
         if (!newsContainer.containsKey(keyword) || yesterdayDate.isAfter(newsContainer.get(keyword).getLastUpdated())) {
-            NewsResults topNewsForKeyword = ApiRequester.fetchData(url, NewsResults.class);
+            NewsResults topNewsForKeyword = ApiRequester.fetchDataGet(url, NewsResults.class);
             topNewsForKeyword.setLastUpdated(todayDate);
             newsContainer.put(keyword, topNewsForKeyword);
         }

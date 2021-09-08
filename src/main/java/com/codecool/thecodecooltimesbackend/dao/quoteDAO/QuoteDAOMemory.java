@@ -16,7 +16,7 @@ public class QuoteDAOMemory implements QuoteDAO {
             String quoteApiUrl = AppProperties.getQuoteApiUrl();
             int count = 0;
             do {
-                quote = ApiRequester.fetchData(quoteApiUrl, Quote.class);
+                quote = ApiRequester.fetchDataGet(quoteApiUrl, Quote.class);
                 System.out.println(++count);
             } while (quote.getQuote().length() > MAX_QUOTE_LENGTH);
         }
