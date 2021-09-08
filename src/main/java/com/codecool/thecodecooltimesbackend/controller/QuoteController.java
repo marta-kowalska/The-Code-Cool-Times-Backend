@@ -1,7 +1,9 @@
 package com.codecool.thecodecooltimesbackend.controller;
 
-import com.codecool.thecodecooltimesbackend.service.NewsService;
+import com.codecool.thecodecooltimesbackend.config.AppProperties;
+import com.codecool.thecodecooltimesbackend.model.quote.Quote;
 import com.codecool.thecodecooltimesbackend.service.QuoteService;
+import com.codecool.thecodecooltimesbackend.util.ApiRequester;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +21,8 @@ public class QuoteController {
         this.quoteService = quoteService;
     }
 
-    @GetMapping("/")
-    public String getQuote() {
-        return "Hello QuoteController!";
+    @GetMapping("/random")
+    public Quote getQuote() {
+        return quoteService.getRandomQuote();
     }
-
 }
