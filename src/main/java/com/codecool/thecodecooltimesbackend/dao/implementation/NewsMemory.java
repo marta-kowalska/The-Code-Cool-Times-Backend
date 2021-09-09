@@ -28,9 +28,8 @@ public class NewsMemory implements NewsDAO {
     @Override
     public NewsResults getTopNews() {
         String url = BASE_URL +  "top-headlines?country=us&pageSize=100" + API_KEY;
-        LocalDateTime yesterdayDate = LocalDateTime.now(ZoneId.of("UTC")).minusDays(1);
         LocalDateTime todayDate = LocalDateTime.now(ZoneId.of("UTC"));
-        if (!newsContainer.containsKey("topNews") || yesterdayDate.isAfter(newsContainer.get("topNews").getLastUpdated())) {
+        if (shouldIFetch("topNews")) {
             NewsResults topNews = apiRequester.fetchDataGet(url, NewsResults.class);
             topNews.setLastUpdated(todayDate);
             newsContainer.put("topNews", topNews);
@@ -39,10 +38,14 @@ public class NewsMemory implements NewsDAO {
     }
 
     @Override
+    public Boolean shouldIFetch(String key) {
+        LocalDateTime yesterdayDate = LocalDateTime.now(ZoneId.of("UTC")).minusHours(1);
+        return !newsContainer.containsKey(key) || yesterdayDate.isAfter(newsContainer.get(key).getLastUpdated());
+    }
+
+    @Override
     public NewsResults getTopNewsForCategory(String category) {
         LocalDateTime todayDate =  LocalDateTime.now(ZoneId.of("UTC")).withNano(0);
-        LocalDateTime yesterdayDate = LocalDateTime.now(ZoneId.of("UTC")).minusDays(1);
-
         String url = BASE_URL + "top-headlines?category=" +
                 category +
                 "&language=en" +
@@ -50,10 +53,10 @@ public class NewsMemory implements NewsDAO {
                 "&to" + todayDate +
                 "&pageSize=100" +
                 API_KEY;
-        if (!newsContainer.containsKey(category) || yesterdayDate.isAfter(newsContainer.get(category).getLastUpdated())) {
-            NewsResults topNewsForCategory = apiRequester.fetchDataGet(url, NewsResults.class);
-            topNewsForCategory.setLastUpdated(todayDate);
-            newsContainer.put(category, topNewsForCategory);
+        if (shouldIFetch(category)) {
+            NewsResults topNews = apiRequester.fetchDataGet(url, NewsResults.class);
+            topNews.setLastUpdated(todayDate);
+            newsContainer.put(category, topNews);
         }
         return newsContainer.get(category);
     }
@@ -61,7 +64,6 @@ public class NewsMemory implements NewsDAO {
     @Override
     public NewsResults getNewsOnKeyword(String keyword) {
         LocalDateTime todayDate =  LocalDateTime.now(ZoneId.of("UTC")).withNano(0);
-        LocalDateTime yesterdayDate = LocalDateTime.now(ZoneId.of("UTC")).minusDays(1);
         String url = BASE_URL + "everything?q=" +
                 keyword +
                 "&language=en" +
@@ -69,10 +71,10 @@ public class NewsMemory implements NewsDAO {
                 "&to" + todayDate +
                 "&pageSize=100" +
                 API_KEY;
-        if (!newsContainer.containsKey(keyword) || yesterdayDate.isAfter(newsContainer.get(keyword).getLastUpdated())) {
-            NewsResults topNewsForKeyword = apiRequester.fetchDataGet(url, NewsResults.class);
-            topNewsForKeyword.setLastUpdated(todayDate);
-            newsContainer.put(keyword, topNewsForKeyword);
+        if (shouldIFetch(keyword)) {
+            NewsResults topNews = apiRequester.fetchDataGet(url, NewsResults.class);
+            topNews.setLastUpdated(todayDate);
+            newsContainer.put(keyword, topNews);
         }
         return newsContainer.get(keyword);
     }

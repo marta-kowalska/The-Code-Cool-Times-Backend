@@ -10,4 +10,6 @@ public interface NewsDAO {
     NewsResults getTopNewsForCategory(String category);
 
     NewsResults getNewsOnKeyword(String keyword);
+
+    Boolean shouldIFetch(String key);
 }
