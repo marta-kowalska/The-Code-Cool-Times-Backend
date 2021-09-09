@@ -15,6 +15,13 @@ public class NameDayResult {
         this.todaysNameDays = namedays.get("hu");
     }
 
+    public NameDayResult(String todaysNameDays) {
+        this.todaysNameDays = todaysNameDays;
+    }
+
+    public NameDayResult() {
+    }
+
     public String getTodaysNameDays() {
         return todaysNameDays;
     }
