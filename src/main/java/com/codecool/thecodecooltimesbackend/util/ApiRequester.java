@@ -2,13 +2,18 @@ package com.codecool.thecodecooltimesbackend.util;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-@Component
+@Service
 public class ApiRequester {
 
-    private static final WebClient webClient = WebClient.create();
+    private final WebClient webClient;
+
+    public ApiRequester(WebClient.Builder webClientBuilder) {
+        this.webClient = webClientBuilder.build();
+    }
 
     public <T> T fetchDataGet(String apiUrl, Class<T> className) {
         Mono<T> response = webClient.get()
