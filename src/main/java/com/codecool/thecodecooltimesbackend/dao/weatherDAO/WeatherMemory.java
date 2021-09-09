@@ -13,7 +13,7 @@ public class WeatherMemory implements WeatherDAO {
     private final ApiRequester apiRequester;
 
     @Autowired
-    public NewsMemory(ApiRequester apiRequester) {
+    public WeatherMemory(ApiRequester apiRequester) {
         this.apiRequester = apiRequester;
     }
     
