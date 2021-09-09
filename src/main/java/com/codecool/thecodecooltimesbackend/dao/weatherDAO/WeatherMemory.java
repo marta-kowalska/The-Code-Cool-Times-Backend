@@ -25,7 +25,7 @@ public class WeatherMemory implements WeatherDAO {
     public WeatherResult getCurrentWeatherForCity(String city) {
         if(weatherResult == null || shouldFetchAgain()){
             String actualURL = API_URL.replace("{city}", city);
-            weatherResult = ApiRequester.fetchDataGet(actualURL, WeatherResult.class);
+            weatherResult = apiRequester.fetchDataGet(actualURL, WeatherResult.class);
             lastFetch = LocalDateTime.now(ZoneId.of("UTC"));
         }
         return weatherResult;
