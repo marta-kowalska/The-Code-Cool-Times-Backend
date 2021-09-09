@@ -1,4 +1,4 @@
-package com.codecool.thecodecooltimesbackend.dao;
+package com.codecool.thecodecooltimesbackend.dao.newsDAO;
 
 
 import com.codecool.thecodecooltimesbackend.model.news.NewsResults;

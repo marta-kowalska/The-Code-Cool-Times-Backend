@@ -11,8 +11,8 @@ public class NameDayResult {
     @SuppressWarnings("unchecked")
     @JsonProperty("data")
     public void unpackNestedNameday(Map<String,Object> data) {
-        Map<String,Object> namedays = (Map<String,Object>)data.get("namedays");
-        this.todaysNameDays = (String) namedays.get("hu");
+        Map<String,String> namedays = (Map<String,String>)data.get("namedays");
+        this.todaysNameDays = namedays.get("hu");
     }
 
     public String getTodaysNameDays() {

@@ -1,6 +1,6 @@
 package com.codecool.thecodecooltimesbackend.service;
 
-import com.codecool.thecodecooltimesbackend.dao.RecipeDAO;
+import com.codecool.thecodecooltimesbackend.dao.recipeDAO.RecipeDAO;
 import com.codecool.thecodecooltimesbackend.model.recipe.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,5 +20,4 @@ public class RecipeService {
         return recipeDAO.getRandomRecipe();
     }
 
-    // TODO should also implement getShortRecipe?
 }
