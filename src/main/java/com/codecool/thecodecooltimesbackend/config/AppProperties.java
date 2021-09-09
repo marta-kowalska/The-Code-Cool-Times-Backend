@@ -22,7 +22,7 @@ public class AppProperties {
             NEWS_API_PERSISTENCE = p.getProperty("news_api_persistence", null);
             QUOTE_API_URL = p.getProperty("quote_api_url", null);
         } catch (IOException e) {
-            System.out.println("'connection.properties' not found!");
+            System.out.println("'app.properties' not found!");
         }
     }
 
