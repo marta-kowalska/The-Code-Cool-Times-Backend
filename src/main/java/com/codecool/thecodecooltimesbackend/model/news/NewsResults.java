@@ -30,7 +30,10 @@ public class NewsResults {
         List<Object> filteredArticles = new ArrayList<>();
         for (Map<String, Object> article : articles) {
             String articleString = (String) article.get("description");
-            if (articleString!= null && !articleString.equals("") && !articleString.contains("<") && !articleString.contains("www.")) {
+            if (articleString!= null &&
+                    !articleString.equals("") &&
+                    !articleString.contains("<") &&
+                    !articleString.contains("www.")) {
                 filteredArticles.add(article);
             }
         }
