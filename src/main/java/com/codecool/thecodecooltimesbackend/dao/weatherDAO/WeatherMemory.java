@@ -2,6 +2,7 @@ package com.codecool.thecodecooltimesbackend.dao.weatherDAO;
 
 import com.codecool.thecodecooltimesbackend.model.weather.WeatherResult;
 import com.codecool.thecodecooltimesbackend.util.ApiRequester;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
