@@ -9,7 +9,7 @@ public class WeatherResult {
 
     private static final String iconURL = "https://www.weatherbit.io/static/img/icons/{icon_code}.png";
 
-    private Double temperature;
+    private Number temperature;
     private String description;
     private String icon;
 
@@ -18,14 +18,14 @@ public class WeatherResult {
     @JsonProperty("data")
     public void unpackDetails(List<Object> data) {
         Map<String,Object> details = (Map<String,Object>)data.get(0);
-        this.temperature = (Double) details.get("app_temp");
+        this.temperature = (Number) details.get("app_temp");
         Map<String,Object> weather = (Map<String,Object>)details.get("weather");
         this.description = (String) weather.get("description");
         String iconCode = (String) weather.get("icon");
         icon = iconURL.replace("{icon_code}", iconCode);
     }
 
-    public Double getTemperature() {
+    public Number getTemperature() {
         return temperature;
     }
 
