@@ -25,7 +25,6 @@ public class NewsResults {
     }
 
 
-    @SuppressWarnings("unchecked")
     @JsonProperty("articles")
     public void filterForTagAndLink(List<Map<String, Object>> articles) {
         List<Object> filteredArticles = new ArrayList<>();
