@@ -1,5 +1,9 @@
 package com.codecool.thecodecooltimesbackend.model.news;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Map;
+
 public class News {
 
     private Source source;
@@ -10,6 +14,9 @@ public class News {
     private String urlToImage;
     private String publishedAt;
     private String content;
+
+
+
 
     public Source getSource() {
         return source;
