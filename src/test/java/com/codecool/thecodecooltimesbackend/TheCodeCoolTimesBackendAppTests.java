@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class TheCodeCoolTimesBackendAppTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
 
 }
