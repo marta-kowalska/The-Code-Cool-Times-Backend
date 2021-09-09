@@ -1,6 +1,6 @@
-package com.codecool.thecodecooltimesbackend.dao.implementation;
+package com.codecool.thecodecooltimesbackend.dao.newsDAO;
 
-import com.codecool.thecodecooltimesbackend.dao.NewsDAO;
+import com.codecool.thecodecooltimesbackend.dao.newsDAO.NewsDAO;
 import com.codecool.thecodecooltimesbackend.model.news.NewsResults;
 import com.codecool.thecodecooltimesbackend.util.ApiRequester;
 import org.springframework.beans.factory.annotation.Autowired;

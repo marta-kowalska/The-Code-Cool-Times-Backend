@@ -1,6 +1,5 @@
-package com.codecool.thecodecooltimesbackend.dao.implementation;
+package com.codecool.thecodecooltimesbackend.dao.recipeDAO;
 
-import com.codecool.thecodecooltimesbackend.dao.RecipeDAO;
 import com.codecool.thecodecooltimesbackend.model.recipe.Recipe;
 import com.codecool.thecodecooltimesbackend.model.recipe.RecipeResults;
 import com.codecool.thecodecooltimesbackend.util.ApiRequester;

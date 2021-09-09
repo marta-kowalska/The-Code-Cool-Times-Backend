@@ -1,6 +1,6 @@
 package com.codecool.thecodecooltimesbackend.service;
 
-import com.codecool.thecodecooltimesbackend.dao.NewsDAO;
+import com.codecool.thecodecooltimesbackend.dao.newsDAO.NewsDAO;
 import com.codecool.thecodecooltimesbackend.model.news.NewsResults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

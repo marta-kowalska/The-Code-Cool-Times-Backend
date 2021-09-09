@@ -1,4 +1,4 @@
-package com.codecool.thecodecooltimesbackend.dao;
+package com.codecool.thecodecooltimesbackend.dao.recipeDAO;
 
 import com.codecool.thecodecooltimesbackend.model.recipe.Recipe;
 
