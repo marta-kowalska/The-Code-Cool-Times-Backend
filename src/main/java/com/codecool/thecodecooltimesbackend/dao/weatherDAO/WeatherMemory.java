@@ -10,6 +10,13 @@ import java.time.ZoneId;
 @Repository("weatherMemory")
 public class WeatherMemory implements WeatherDAO {
 
+    private final ApiRequester apiRequester;
+
+    @Autowired
+    public NewsMemory(ApiRequester apiRequester) {
+        this.apiRequester = apiRequester;
+    }
+    
     private static final String  API_URL = "https://api.weatherbit.io/v2.0/current?city={city}&key=135cd6338d104bbca1d1c554b96c2085";
     private WeatherResult weatherResult;
     private LocalDateTime lastFetch;
