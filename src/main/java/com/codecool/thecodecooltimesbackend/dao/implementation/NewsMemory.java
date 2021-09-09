@@ -3,6 +3,7 @@ package com.codecool.thecodecooltimesbackend.dao.implementation;
 import com.codecool.thecodecooltimesbackend.dao.NewsDAO;
 import com.codecool.thecodecooltimesbackend.model.news.NewsResults;
 import com.codecool.thecodecooltimesbackend.util.ApiRequester;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,12 @@ import java.util.Map;
 @Repository("newsMemory")
 public class NewsMemory implements NewsDAO {
 
+    private final ApiRequester apiRequester;
+
+    @Autowired
+    public NewsMemory(ApiRequester apiRequester) {
+        this.apiRequester = apiRequester;
+    }
     private static final String BASE_URL = "https://newsapi.org/v2/";
     private static final String API_KEY = "&apiKey=803b1f20229542109d3b21b58d162064";
     private Map<String, NewsResults> newsContainer = new HashMap<>();
@@ -24,7 +31,7 @@ public class NewsMemory implements NewsDAO {
         LocalDateTime yesterdayDate = LocalDateTime.now(ZoneId.of("UTC")).minusDays(1);
         LocalDateTime todayDate = LocalDateTime.now(ZoneId.of("UTC"));
         if (!newsContainer.containsKey("topNews") || yesterdayDate.isAfter(newsContainer.get("topNews").getLastUpdated())) {
-            NewsResults topNews = ApiRequester.fetchDataGet(url, NewsResults.class);
+            NewsResults topNews = apiRequester.fetchDataGet(url, NewsResults.class);
             topNews.setLastUpdated(todayDate);
             newsContainer.put("topNews", topNews);
         }
@@ -44,7 +51,7 @@ public class NewsMemory implements NewsDAO {
                 "&pageSize=100" +
                 API_KEY;
         if (!newsContainer.containsKey(category) || yesterdayDate.isAfter(newsContainer.get(category).getLastUpdated())) {
-            NewsResults topNewsForCategory = ApiRequester.fetchDataGet(url, NewsResults.class);
+            NewsResults topNewsForCategory = apiRequester.fetchDataGet(url, NewsResults.class);
             topNewsForCategory.setLastUpdated(todayDate);
             newsContainer.put(category, topNewsForCategory);
         }
@@ -63,7 +70,7 @@ public class NewsMemory implements NewsDAO {
                 "&pageSize=100" +
                 API_KEY;
         if (!newsContainer.containsKey(keyword) || yesterdayDate.isAfter(newsContainer.get(keyword).getLastUpdated())) {
-            NewsResults topNewsForKeyword = ApiRequester.fetchDataGet(url, NewsResults.class);
+            NewsResults topNewsForKeyword = apiRequester.fetchDataGet(url, NewsResults.class);
             topNewsForKeyword.setLastUpdated(todayDate);
             newsContainer.put(keyword, topNewsForKeyword);
         }
